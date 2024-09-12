@@ -25,6 +25,7 @@ public class Tail : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         _targetPosition = followTransform.position - followTransform.forward * distance;
         _targetPosition += (transform.position - _targetPosition) * delayTime;
         transform.position = Vector3.Lerp(transform.position, _targetPosition, Time.deltaTime * moveStep);
