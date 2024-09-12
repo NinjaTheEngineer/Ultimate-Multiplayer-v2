@@ -21,7 +21,7 @@ public class PlayerController : NetworkBehaviour
     }
     void Update() {
         // Move only if the application is focused and right mouse button is pressed
-        if (!Application.isFocused) return;
+        if (!Application.isFocused || !IsOwner) return;
 
         MoveToCursor();
     }
