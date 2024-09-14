@@ -276,13 +276,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.42121935, y: -0, z: -0, w: 0.9069588}
+  m_LocalRotation: {x: 0.49901482, y: -0, z: -0, w: 0.8665935}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1013286466}
-  m_LocalEulerAnglesHint: {x: 49.823, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 59.87, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +519,7 @@ Transform:
   m_GameObject: {fileID: 1013286465}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.1, z: -7.53}
+  m_LocalPosition: {x: 0, y: 9.02, z: -8.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -610,9 +610,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3980706999229867400, guid: 23174609e2415cf4b913bb26d19d33d2, type: 3}
-  spawnPositionRange: {x: 10, y: 10}
+  spawnPositionRange: {x: 7, y: 7}
   spawnHeight: 0
-  MaxFoodCount: 2
+  MaxFoodCount: 5
 --- !u!1 &2088518772
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 2088518774}
   - component: {fileID: 2088518773}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -713,7 +713,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 15, y: 1, z: 15}
+  m_LocalScale: {x: 25, y: 1, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

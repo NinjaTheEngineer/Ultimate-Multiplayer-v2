@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2154206465
+  GlobalObjectIdHash: 3818013156
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _length:
     m_InternalValue: 1
-  _collider: {fileID: 0}
+  _collider: {fileID: 4329634657414326993}
   _tailPrefab: {fileID: 3989873984826142556, guid: f702810555eaddd418077a3b4f64130a,
     type: 3}
 --- !u!114 &-131994538220950971

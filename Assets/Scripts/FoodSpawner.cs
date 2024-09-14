@@ -17,7 +17,7 @@ public class FoodSpawner : MonoBehaviour
 
     private void SpawnFoodStart() {
         NetworkManager.Singleton.OnServerStarted -= SpawnFoodStart;
-        for(int i = 0; i < 30; i++) {
+        for(int i = 0; i < MaxFoodCount; i++) {
             SpawnFood();
         }
         StartCoroutine(SpawnOverTime());
@@ -32,7 +32,10 @@ public class FoodSpawner : MonoBehaviour
     private void SpawnFood() {
         NetworkObject obj = NetworkObjectPool.Singleton.GetNetworkObject(prefab, GetRandomPositionOnMap(), Quaternion.identity);
         obj.GetComponent<Food>().prefab = prefab;
-        if(!obj.IsSpawned) obj.Spawn(true);
+        if (!obj.IsSpawned) {
+            obj.Spawn(true);
+            obj.gameObject.SetActive(true);
+        }
     }
 
     private IEnumerator SpawnOverTime() {

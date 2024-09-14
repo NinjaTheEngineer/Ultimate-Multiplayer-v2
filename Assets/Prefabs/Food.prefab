@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3664330822173714201}
   - component: {fileID: 2785922496327522631}
-  - component: {fileID: 2120841871675070441}
   - component: {fileID: -7593304483382046579}
+  - component: {fileID: 2120841871675070441}
   - component: {fileID: 1798134606535149071}
   m_Layer: 7
   m_Name: Food
@@ -57,6 +57,27 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.40764987
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7593304483382046579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3980706999229867400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2293345703
+  InScenePlacedSourceGlobalObjectIdHash: 2293345703
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &2120841871675070441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,27 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3980706999229867400}
---- !u!114 &-7593304483382046579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3980706999229867400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 933706311
-  InScenePlacedSourceGlobalObjectIdHash: 2293345703
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!54 &1798134606535149071
 Rigidbody:
   m_ObjectHideFlags: 0

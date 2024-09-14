@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkedOwner: {fileID: 0}
   followTransform: {fileID: 0}
-  delayTime: 0.3
-  distance: 0.5
+  delayTime: 0.2
+  distance: 0.7
   moveStep: 6
   _collider: {fileID: 6952996349002604019}
 --- !u!1 &4847999971896539964

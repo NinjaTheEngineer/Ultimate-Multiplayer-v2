@@ -6,6 +6,13 @@ using UnityEngine;
 public class Food : NetworkBehaviour
 {
     public GameObject prefab;
+
+    public override void OnNetworkDespawn() {
+        base.OnNetworkDespawn();
+        Debug.Log("OnNetworkDespawn", this);
+        gameObject.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other) {
         
         if (!NetworkManager.Singleton.IsServer) return;
@@ -15,7 +22,13 @@ public class Food : NetworkBehaviour
         if(other.TryGetComponent(out PlayerLength playerLength)) {
             playerLength.AddLength();
         }
-        NetworkObjectPool.Singleton.ReturnNetworkObject(NetworkObject, prefab);
         NetworkObject.Despawn();
+    }
+
+    private void OnEnable() {
+        Debug.Log("OnEnable");
+    }
+    private void OnDisable() {
+        Debug.Log("OnDisable");
     }
 }

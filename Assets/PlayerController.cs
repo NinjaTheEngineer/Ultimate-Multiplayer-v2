@@ -46,7 +46,7 @@ public class PlayerController : NetworkBehaviour
             if (targetPosition != transform.position) {
                 Vector3 targetDirection = targetPosition - transform.position;
                 transform.rotation = Quaternion.LookRotation(targetDirection); // Rotate in the direction of movement
-                Debug.Log("Target Position= " + targetPosition + " Target Direction=" + targetDirection);
+                //Debug.Log("Target Position= " + targetPosition + " Target Direction=" + targetDirection);
             }
         }
     }

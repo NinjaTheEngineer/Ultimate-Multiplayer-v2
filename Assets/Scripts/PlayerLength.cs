@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -6,6 +7,8 @@ using UnityEngine;
 public class PlayerLength : NetworkBehaviour
 {
     public NetworkVariable<ushort> _length = new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
+    [CanBeNull] public static event System.Action<ushort> ChangedLengthEvent;
 
     private List<GameObject> _tails;
     private Transform _lastTail;
@@ -33,6 +36,9 @@ public class PlayerLength : NetworkBehaviour
     private void LengthChanged(ushort oldValue, ushort newValue) {
         Debug.Log("LengthChanged - Callback");
         IncrementTail();
+
+        if (!IsOwner) return;
+        ChangedLengthEvent?.Invoke(_length.Value);
     }
 
     private void IncrementTail() {

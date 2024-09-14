@@ -84,8 +84,14 @@ public class NetworkObjectPool : NetworkBehaviour {
     /// Return an object to the pool (reset objects before returning).
     /// </summary>
     public void ReturnNetworkObject(NetworkObject networkObject, GameObject prefab) {
-        m_PooledObjects[prefab].Release(networkObject);
-        m_nonPooledObjects[prefab]--;
+        try {
+            m_PooledObjects[prefab].Release(networkObject);
+            m_nonPooledObjects[prefab]--;
+        } catch (Exception e) {
+            Debug.LogWarning("Exception caught=" + e.Message);
+        }
+        var go = networkObject.gameObject;
+        go.SetActive(false);
     }
 
     /// <summary>
