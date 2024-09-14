@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Tail : MonoBehaviour
@@ -22,7 +21,6 @@ public class Tail : MonoBehaviour
     }
     private void Update() {
         if (followTransform == null) {
-            Destroy(gameObject);
             return;
         }
 
