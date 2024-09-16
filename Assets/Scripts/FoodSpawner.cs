@@ -10,13 +10,20 @@ public class FoodSpawner : MonoBehaviour
     public Vector2 spawnPositionRange;
     public float spawnHeight;
     public float MaxFoodCount = 5;
-
+    bool serverRunning;
     private void Start() {
         NetworkManager.Singleton.OnServerStarted += SpawnFoodStart;
+        NetworkManager.Singleton.OnServerStopped += OnServerStopped;
+    }
+
+    private void OnServerStopped(bool isStopped) {
+        Debug.Log("OnServerStopped=" + isStopped);
+        serverRunning = false;
     }
 
     private void SpawnFoodStart() {
         NetworkManager.Singleton.OnServerStarted -= SpawnFoodStart;
+        serverRunning = true;
         for(int i = 0; i < MaxFoodCount; i++) {
             SpawnFood();
         }
@@ -30,19 +37,30 @@ public class FoodSpawner : MonoBehaviour
     }
 
     private void SpawnFood() {
-        NetworkObject obj = NetworkObjectPool.Singleton.GetNetworkObject(prefab, GetRandomPositionOnMap(), Quaternion.identity);
+        NetworkObject obj;
+        try {
+            obj = NetworkObjectPool.Singleton.GetNetworkObject(prefab, GetRandomPositionOnMap(), Quaternion.identity);
+        } catch(Exception e) {
+            Debug.LogWarning("SpawnFood: Exception=" + e.Message);
+            return;
+        }
+        if(obj==null) {
+            Debug.LogWarning("Object is null => no-op");
+            return;
+        }
         obj.GetComponent<Food>().prefab = prefab;
         if (!obj.IsSpawned) {
+            //Debug.Log("Spawned Food correctly!");
             obj.Spawn(true);
             obj.gameObject.SetActive(true);
         }
     }
-
     private IEnumerator SpawnOverTime() {
-        while(NetworkManager.Singleton.ConnectedClients.Count > 0) {
+        while(serverRunning) {
             yield return new WaitForSeconds(2f);
-
-            if (NetworkObjectPool.Singleton.GetCurrentPrefabCount(prefab) < MaxFoodCount) {
+            var foodCount = NetworkObjectPool.Singleton.GetCurrentPrefabCount(prefab);
+            //Debug.Log("FoodCount=" + foodCount);
+            if (foodCount < MaxFoodCount) {
                 SpawnFood();
             }
         }

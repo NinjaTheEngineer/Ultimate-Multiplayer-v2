@@ -26,9 +26,9 @@ public class Food : NetworkBehaviour
     }
 
     private void OnEnable() {
-        Debug.Log("OnEnable");
+        //Debug.Log("OnEnable");
     }
     private void OnDisable() {
-        Debug.Log("OnDisable");
+        //Debug.Log("OnDisable");
     }
 }

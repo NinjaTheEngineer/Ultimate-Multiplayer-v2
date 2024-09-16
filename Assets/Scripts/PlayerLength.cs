@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerLength : NetworkBehaviour
 {
-    public NetworkVariable<ushort> _length = new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public NetworkVariable<ushort> length = new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     [CanBeNull] public static event System.Action<ushort> ChangedLengthEvent;
 
@@ -20,27 +20,29 @@ public class PlayerLength : NetworkBehaviour
         _tails = new List<GameObject>();
         _lastTail = transform;
         _collider ??= GetComponent<Collider>() ?? GetComponentInChildren<Collider>();
-        if (!IsServer) _length.OnValueChanged += LengthChanged;
-        var length = _length.Value;
-        for (int i = 0; i < _length.Value; i++) {
+        if (!IsServer) this.length.OnValueChanged += LengthChangedEvent;
+        var length = this.length.Value;
+        for (int i = 0; i < this.length.Value; i++) {
             IncrementTail();
         }
     }
 
-    [ContextMenu("Add Length")]
     public void AddLength() {
-        _length.Value += 1;
-        IncrementTail();
+        length.Value += 1;
+        LengthChanged(); //For host
     }
 
-    private void LengthChanged(ushort oldValue, ushort newValue) {
+    private void LengthChangedEvent(ushort oldValue, ushort newValue) {
         Debug.Log("LengthChanged - Callback");
+        LengthChanged();
+    }
+    private void LengthChanged() {
         IncrementTail();
 
         if (!IsOwner) return;
-        ChangedLengthEvent?.Invoke(_length.Value);
+        ChangedLengthEvent?.Invoke(length.Value);
+        ClientMusicPlayer.Instance.PlayPickUpAudioClip();
     }
-
     private void IncrementTail() {
         GameObject tailGameObject = Instantiate(_tailPrefab, transform.position, Quaternion.identity);
         
@@ -56,5 +58,17 @@ public class PlayerLength : NetworkBehaviour
 
 
         _tails.Add(tailGameObject);
+    }
+
+    public override void OnNetworkDespawn() {
+        base.OnNetworkDespawn();
+        DestroyTails();
+    }
+    private void DestroyTails() {
+        while(_tails.Count != 0) {
+            GameObject tail = _tails[0];
+            _tails.RemoveAt(0);
+            Destroy(tail);
+        }
     }
 }
